@@ -9,10 +9,10 @@ class Usuario
             $Comando=$conexao->prepare("INSERT INTO TB_CLIENTE (NOME_CLIENTE,
             END_CLIENTE, EMAIL_CLIENTE, SENHA_CLIENTE) VALUES (?, ?, ?, ?)");
 
-            $Comando->bindParam("1", $NomeCadastro);
-            $Comando->bindParam("2", $EnderecoCadastro);
-            $Comando->bindParam("3", $EmailCadastro);
-            $Comando->bindParam("4", $SenhaCadastro);
+            $Comando->bindParam(1, $NomeCadastro);
+            $Comando->bindParam(2, $EnderecoCadastro);
+            $Comando->bindParam(3, $EmailCadastro);
+            $Comando->bindParam(4, $SenhaCadastro);
             
             if ($Comando->execute()){
 
@@ -24,6 +24,7 @@ class Usuario
         }
         catch (PDOException $erro) {
             echo "Erro: " . $erro->getMessage();
+            echo '<script> setTimeout(function() { window.location.href = "Cadastro.html"; }, 6000);</script>';
         }
     }
 
@@ -34,8 +35,8 @@ class Usuario
             //verificar se o email e senha estão cadastrados, se sim
             $Comando=$conexao->prepare("SELECT ID_CLIENTE FROM TB_CLIENTE 
                                         WHERE EMAIL_CLIENTE=? AND SENHA_CLIENTE=?");
-            $Comando->bindParam("1", $emailLogin);
-            $Comando->bindParam("2", $senhaLogin);
+            $Comando->bindParam(1, $emailLogin);
+            $Comando->bindParam(2, $senhaLogin);
             $Comando->execute();
             
 
@@ -54,7 +55,7 @@ class Usuario
                 return false; //não conseguiu logar
             }
         }
-        catch (Exception $erro) {
+        catch (PDOException $erro) {
             echo "Erro: " . $erro->getMessage();
         }
     }
