@@ -42,22 +42,18 @@ class Usuario
                                         WHERE EMAIL_CLIENTE=? AND SENHA_CLIENTE=?");
             $Comando->bindParam(1, $emailLogin);
             $Comando->bindParam(2, $senhaLogin);
-            $Comando->execute();
             
+            if ($Comando->execute()) {
+                if($Comando->rowCount() > 0)
+                {
+                    //Entrar no sistema (Sessão)
+                    $dado = $Comando->fetch(); //fetch pega o que vem do bd e transforma em vetor
+                    session_start();
+                    $_SESSION['user_id'] = $dado['ID_CLIENTE'];
+                    $_SESSION['user_email'] = $emailLogin;
 
-            if($Comando->rowCount() > 0)
-            {
-                //Entrar no sistema (Sessão)
-                $dado = $Comando->fetch(); //fetch pega o que vem do bd e transforma em vetor
-                session_start();
-                $_SESSION['user_id'] = $dado['ID_CLIENTE'];
-                $_SESSION['user_email'] = $emailLogin;
-
-                return true; 
-            }
-            else
-            {
-                return false; //não conseguiu logar
+                    return true; 
+                }
             }
         }
         catch (PDOException $erro) {
@@ -67,7 +63,40 @@ class Usuario
 
     public function alterar () {
 
-        // aqui vc segue o que tem anteriormente, porém modificado para aletar os dados
+        try {
+            session_start();
+            $ID = $_SESSION['user_id'];
+            $NomeAlterar = $_SESSION[''];
+            $EnderecoAlterar = $_SESSION[''];
+
+            include "conexao.php";
+            //caso não, cadastrar   
+            $Comando=$conexao->prepare("UPDATE TB_CLIENTE SET NOME_CLIENTE = ?, END_CLIENTE = ? 
+                                        WHERE ID_CLIENTE = ?");
+
+            $Comando->bindParam(1, $NomeAlterar);
+            $Comando->bindParam(2, $EnderecoAlterar);
+            $Comando->bindParam(3, $ID);
+
+            
+            if ($Comando->execute()){
+
+                if ($Comando->rowCount() > 0) {
+
+                    // quero iniciar o session aqui
+                    // ele só será iniciado quando o cadastro for executado com sucesso
+
+                echo "<script> alert('Alteração feita com sucesso!') </script>";
+                echo '<script> setTimeout(function() { window.location.href = "NomeDaPagina.html"; }, 1000);</script>';
+                // nesse codigo ele vai inicar um timer (1000 = 1seg) para abrir uma pagina, no caso é a de login
+                // altere "NomeDaPagina.html" para a pagina que ele vai abrir
+                }
+            }
+        }
+        catch (PDOException $erro) {
+            echo "Erro: " . $erro->getMessage(); // altere "NomeDaPagina.html" para a pagina que ele vai voltar após o erro
+            echo '<script> setTimeout(function() { window.location.href = "NomeDaPagina.html"; }, 6000);</script>';
+        }
     }
 }
 ?>
