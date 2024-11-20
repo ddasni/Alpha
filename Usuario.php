@@ -1,8 +1,6 @@
 <?php
 class Usuario 
 {
-    public $msgErro = "";
-
     public function cadastrar($NomeCadastro, $EnderecoCadastro, $EmailCadastro, $SenhaCadastro)
     {
         try {
@@ -25,7 +23,7 @@ class Usuario
             }
         }
         catch (PDOException $erro) {
-            $this->$msgErro = $erro->getMessage();
+            echo "Erro: " . $erro->getMessage();
         }
     }
 
@@ -57,7 +55,7 @@ class Usuario
             }
         }
         catch (Exception $erro) {
-            $this->$msgErro = $erro->getMessage();
+            echo "Erro: " . $erro->getMessage();
         }
     }
 
