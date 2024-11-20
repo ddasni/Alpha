@@ -2,7 +2,6 @@
 class Usuario 
 {
     public $msgErro = "";
-    public $msgSucesso = "";
 
     public function cadastrar($NomeCadastro, $EnderecoCadastro, $EmailCadastro, $SenhaCadastro)
     {
@@ -16,12 +15,16 @@ class Usuario
             $Comando->bindParam("2", $EnderecoCadastro);
             $Comando->bindParam("3", $EmailCadastro);
             $Comando->bindParam("4", $SenhaCadastro);
-            $Comando->execute();
+            
+            if ($Comando->execute()){
 
-            $this->$msgSucesso = "Cadastro feito com sucesso!!!";
-            return true;
+                if ($Comando->rowCount() > 0) {
+                echo "<script> alert('Cadastrado com sucesso!') </script>";
+                echo '<script> setTimeout(function() { window.location.href = "Login.html"; }, 1000);</script>';
+                }
+            }
         }
-        catch (Exception $erro) {
+        catch (PDOException $erro) {
             $this->$msgErro = $erro->getMessage();
         }
     }
