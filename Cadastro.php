@@ -1,6 +1,6 @@
 <?php
 // Incluindo a classe Usuario
-include 'Usuario.php';  // Incluindo o arquivo onde a classe está definida
+include './Classes/Usuario.php';  // Incluindo o arquivo onde a classe está definida
 $user = new Usuario;
 
 
