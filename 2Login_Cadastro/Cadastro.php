@@ -1,6 +1,6 @@
 <?php
 // Incluindo a classe Usuario
-include './Classes/Usuario.php';  // Incluindo o arquivo onde a classe está definida
+include '../Classes/Usuario.php';  // Incluindo o arquivo onde a classe está definida
 $user = new Usuario;
 
 
@@ -17,7 +17,7 @@ if (isset($_POST['incluir'])) {
     if (!empty($NomeCadastro) && !empty($EnderecoCadastro) && !empty($EmailCadastro)
         && !empty($SenhaCadastro) && !empty($senhaConfirma))  {
 
-        include "conexao.php";
+        include "../conexao.php";
         
         // Verifica se senha e confirmar senha são identicos
         if ($SenhaCadastro == $senhaConfirma) {
@@ -30,15 +30,15 @@ if (isset($_POST['incluir'])) {
             echo "<script> alert('Senhas não conferem!') </script>";
             $SenhaCadastro = null;
             $senhaConfirma = null;
-            echo '<script> setTimeout(function() { window.location.href = "Cadastro.html"; }, 1000);</script>';
+            echo '<script> setTimeout(function() { window.location.href = "../2Login_Cadastro/Cadastro.html"; }, 1000);</script>';
         }
     }
     else { // se todos os campos não forem preenchidos
         echo "<script> alert('Preencha todos os campos!') </script>";
-        echo '<script> setTimeout(function() { window.location.href = "Login.html"; }, 1000);</script>';
+        echo '<script> setTimeout(function() { window.location.href = "../2Login_Cadastro/Login.html"; }, 1000);</script>';
     }
 }
 else{ // se o formulario não for enviado
-    header('location:Cadastro.html');
+    header('location:../2Login_Cadastro/Cadastro.html');
 }
 ?>

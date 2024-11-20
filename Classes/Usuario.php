@@ -4,7 +4,7 @@ class Usuario
     public function cadastrar($NomeCadastro, $EnderecoCadastro, $EmailCadastro, $SenhaCadastro)
     {
         try {
-            include "conexao.php";
+            include "../conexao.php";
             //caso não, cadastrar   
             $Comando=$conexao->prepare("INSERT INTO TB_CLIENTE (NOME_CLIENTE,
             END_CLIENTE, EMAIL_CLIENTE, SENHA_CLIENTE) VALUES (?, ?, ?, ?)");
@@ -21,25 +21,27 @@ class Usuario
                     // quero iniciar o session aqui
                     // ele só será iniciado quando o cadastro for executado com sucesso
 
+
                 echo "<script> alert('Cadastrado com sucesso!') </script>";
-                echo '<script> setTimeout(function() { window.location.href = "Login.html"; }, 1000);</script>';
+                echo '<script> setTimeout(function() { window.location.href = "../2Login_Cadastro/Login.html"; }, 1000);</script>';
                 // nesse codigo ele vai inicar um timer (1000 = 1seg) para abrir uma pagina, no caso é a de login
                 }
             }
         }
         catch (PDOException $erro) {
             echo "Erro: " . $erro->getMessage();
-            echo '<script> setTimeout(function() { window.location.href = "Cadastro.html"; }, 6000);</script>';
+            echo '<script> setTimeout(function() { window.location.href = "../2Login_Cadastro/Cadastro.html"; }, 6000);</script>';
         }
     }
 
     public function logar($emailLogin, $senhaLogin)
     {
         try {
-            include "conexao.php";
+            include "../conexao.php";
             //verificar se o email e senha estão cadastrados, se sim
             $Comando=$conexao->prepare("SELECT ID_CLIENTE FROM TB_CLIENTE 
                                         WHERE EMAIL_CLIENTE=? AND SENHA_CLIENTE=?");
+
             $Comando->bindParam(1, $emailLogin);
             $Comando->bindParam(2, $senhaLogin);
             
@@ -58,6 +60,7 @@ class Usuario
         }
         catch (PDOException $erro) {
             echo "Erro: " . $erro->getMessage();
+            echo '<script> setTimeout(function() { window.location.href = "../2Login_Cadastro/Login.html"; }, 6000);</script>';
         }
     }
 
@@ -69,7 +72,7 @@ class Usuario
             $NomeAlterar = $_SESSION[''];
             $EnderecoAlterar = $_SESSION[''];
 
-            include "conexao.php";
+            include "../conexao.php";
             //caso não, cadastrar   
             $Comando=$conexao->prepare("UPDATE TB_CLIENTE SET NOME_CLIENTE = ?, END_CLIENTE = ? 
                                         WHERE ID_CLIENTE = ?");
