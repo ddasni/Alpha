@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecione um Produto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Selecione um Produto</h1><br><br>
+    
+    <div class="ProdutinhosDoDaniDani">
+
+    <h3>Detergente 5,99</h3>
+    <a href=""><img src="img/deter gente.png" id="01" width="300px"></a>
+    
+
+    <h3>Kit Kat 3,29</h3>
+    <a href=""><img src="img/kitty cats.jpg" id="02" width="200px"></a>
+
+    </div>
+</body>
+</html>
