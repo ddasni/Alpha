@@ -23,7 +23,7 @@ if (isset($_POST['incluir'])) {
         if ($SenhaCadastro == $senhaConfirma) {
 
             $user->cadastrar($NomeCadastro, $EnderecoCadastro, $EmailCadastro, $SenhaCadastro);
-            
+
         } 
         else {
             echo "<script> alert('Senhas não conferem!') </script>";
@@ -33,7 +33,8 @@ if (isset($_POST['incluir'])) {
         }
     }
     else { // se todos os campos não forem preenchidos
-        echo "Preencha todos os campos - Erro: " . $user->msgErro;
+        echo "<script> alert('Preencha todos os campos!') </script>";
+        echo '<script> setTimeout(function() { window.location.href = "Login.html"; }, 1000);</script>';
     }
 }
 else{ // se o formulario não for enviado
