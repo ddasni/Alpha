@@ -17,7 +17,10 @@ $arrNoticias =
 
 // Definir a notícia e o caminho da imagem
 $noticia = $arrNoticias[$n];
-$imagemUrl = "img/deter gente.png" . $n . "img/kitty cats.jpg";
+$imagemUrl = "../1Vitrine_Produto/img/deter gente.png" . $n . "../1Vitrine_Produtoimg/img/kitty cats.jpg";
+// tem que ver o caminho da imagem
+
+
 
 // Exibir a notícia e a imagem
 echo "<p>$noticia</p>";
