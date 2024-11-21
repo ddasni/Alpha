@@ -95,11 +95,16 @@ class Usuario
         }
     }
 
+    public function pedido(){
+        // parte destinada a cadastrar o pedido do cliente
+    }
+
     public function sessao($Email_User) {
         try {
             include "../conexao.php";
 
-            $Comando=$conexao->prepare("SELECT NOME_CLIENTE, END_CLIENTE FROM TB_CLIENTE WHERE EMAIL_CLIENTE = ?");
+            $Comando=$conexao->prepare("SELECT NOME_CLIENTE, END_CLIENTE FROM TB_CLIENTE 
+                                        WHERE EMAIL_CLIENTE = ?");
 
             $Comando->bindParam(1, $Email_User);
 
