@@ -18,9 +18,9 @@ class Usuario
 
                 if ($Comando->rowCount() > 0) {
 
-                    // quero iniciar o session aqui
-                    // ele só será iniciado quando o cadastro for executado com sucesso
-
+                session_start();
+                $_SESSION['nome_user'] = $NomeCadastro;
+                $_SESSION['endereco_user'] = $EnderecoCadastro;
 
                 echo "<script> alert('Cadastrado com sucesso!') </script>";
                 echo '<script> setTimeout(function() { window.location.href = "../2Login_Cadastro/Login.html"; }, 1000);</script>';
@@ -85,9 +85,6 @@ class Usuario
             if ($Comando->execute()){
 
                 if ($Comando->rowCount() > 0) {
-
-                    // quero iniciar o session aqui
-                    // ele só será iniciado quando o cadastro for executado com sucesso
 
                 echo "<script> alert('Alteração feita com sucesso!') </script>";
                 echo '<script> setTimeout(function() { window.location.href = "NomeDaPagina.html"; }, 1000);</script>';
