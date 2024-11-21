@@ -14,7 +14,7 @@
 
     <h3>Valor 5,99</h3>
 
-    <a href="Pagto"><button>Comprar</button></a>
+    <a href="../2Login_Cadastro/Login.html"><button>Comprar</button></a>
 
     <h1>Descrição</h1>
 

@@ -15,7 +15,7 @@ if (isset($_POST['Login'])) {
         include '../conexao.php';
         if ($user->logar($emailLogin, $senhaLogin))
         {
-            header("location: ../teste.php");
+            header("location: ../3PGTO_Pedido/pagamento.html");
         }
         else { 
             echo "<script> alert('Usuario inexistente. Cadastre-se ou tente novamente!') </script>";

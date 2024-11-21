@@ -4,7 +4,7 @@
 session_start();
 
 // Inclui a conexão com o banco de dados
-include "conexao.php";
+include "../conexao.php";
 
 // Inicializa as variáveis
 $formaPgto = isset($_POST['forma_pgto']) ? $_POST['forma_pgto'] : "";
