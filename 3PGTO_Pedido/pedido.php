@@ -23,7 +23,7 @@ echo "Valor total:" . $_SESSION['valor_total'] . "<br>" . "<br>"  ;
 
 ?>
 
-<a href="gerenciarrrr.php"><input type="button" value="Gerenciar"></a>
+<a href="../3PGTO_Pedido/GerenciarPedido.html"><input type="button" value="Gerenciar"></a>
 
 </body>
 </html>
