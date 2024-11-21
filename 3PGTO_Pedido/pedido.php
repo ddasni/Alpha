@@ -13,8 +13,8 @@ session_start(); //
 
 
 
-echo "Nome:" . $_SESSION['nome_usuario'] . "<br>" . "<br>" ;
-echo "Endereço:" . $_SESSION['endereco_usuario'] . "<br>" . "<br>"  ;
+echo "Nome:" . $_SESSION['nome_user'] . "<br>" . "<br>" ;
+echo "Endereço:" . $_SESSION['endereco_user'] . "<br>" . "<br>"  ;
 echo "Forma de pagamento:" . $_SESSION['forma_pgto'] . "<br>" . "<br>"  ;
 echo "Condição de pagamento:" . $_SESSION['cond_pgto'] . "<br>" . "<br>"  ;
 echo "Valor da parcela:" . $_SESSION['valor_parce'] . "<br>" . "<br>"  ;
