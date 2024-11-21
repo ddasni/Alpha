@@ -15,6 +15,8 @@ if (isset($_POST['Login'])) {
         include '../conexao.php';
         if ($user->logar($emailLogin, $senhaLogin))
         {
+            $Email_User = $emailLogin;
+            $user->sessao($Email_User);
             header("location: ../3PGTO_Pedido/pagamento.html");
         }
         else { 

@@ -21,9 +21,12 @@ if (isset($_POST['incluir'])) {
         
         // Verifica se senha e confirmar senha são identicos
         if ($SenhaCadastro == $senhaConfirma) {
+            
+            $Email_User = $EmailCadastro;
 
             // Executa a função que vai permitir o cadastro
             $user->cadastrar($NomeCadastro, $EnderecoCadastro, $EmailCadastro, $SenhaCadastro);
+            $user->sessao($Email_User);
 
         } 
         else {
