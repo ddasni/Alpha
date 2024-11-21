@@ -18,10 +18,6 @@ class Usuario
 
                 if ($Comando->rowCount() > 0) {
 
-                session_start();
-                $_SESSION['nome_user'] = $NomeCadastro;
-                $_SESSION['endereco_user'] = $EnderecoCadastro;
-
                 echo "<script> alert('Cadastrado com sucesso!') </script>";
                 echo '<script> setTimeout(function() { window.location.href = "../2Login_Cadastro/Login.html"; }, 1000);</script>';
                 // nesse codigo ele vai inicar um timer (1000 = 1seg) para abrir uma pagina, no caso é a de login
@@ -96,6 +92,35 @@ class Usuario
         catch (PDOException $erro) {
             echo "Erro: " . $erro->getMessage(); // altere "NomeDaPagina.html" para a pagina que ele vai voltar após o erro
             echo '<script> setTimeout(function() { window.location.href = "NomeDaPagina.html"; }, 6000);</script>';
+        }
+    }
+
+    public function sessao($Email_User) {
+        try {
+            include "../conexao.php";
+
+            $Comando=$conexao->prepare("SELECT NOME_CLIENTE, END_CLIENTE FROM TB_CLIENTE WHERE EMAIL_CLIENTE = ?");
+
+            $Comando->bindParam(1, $Email_User);
+
+            if ($Comando->execute()){
+
+                if ($Comando->rowCount() > 0) {
+
+                $dado = $Comando->fetch(PDO::FETCH_ASSOC);
+                $NomeUser = $dado['NOME_CLIENTE'];
+                $EnderecoUser = $dado['END_CLIENTE'];
+
+                session_start();
+
+                $_SESSION['nome_user'] = $NomeUser;
+                $_SESSION['endereco_user'] = $EnderecoUser;
+                }
+            }
+
+        }
+        catch (PDOException $erro) {
+            echo "Erro: " . $erro->getMessage();
         }
     }
 }
