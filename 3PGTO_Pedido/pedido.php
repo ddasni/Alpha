@@ -9,16 +9,14 @@
     
 <?php
 
-session_start(); // 
+session_start();
 
-
-
-echo "Nome:" . $_SESSION['nome_user'] . "<br>" . "<br>" ;
-echo "Endereço:" . $_SESSION['endereco_user'] . "<br>" . "<br>"  ;
-echo "Forma de pagamento:" . $_SESSION['forma_pgto'] . "<br>" . "<br>"  ;
-echo "Condição de pagamento:" . $_SESSION['cond_pgto'] . "<br>" . "<br>"  ;
-echo "Valor da parcela:" . $_SESSION['valor_parce'] . "<br>" . "<br>"  ;
-echo "Valor total:" . $_SESSION['valor_total'] . "<br>" . "<br>"  ;
+echo "Nome: " . $_SESSION['nome_user'] . "<br>" . "<br>" ;
+echo "Endereço: " . $_SESSION['endereco_user'] . "<br>" . "<br>"  ;
+echo "Forma de pagamento: " . $_SESSION['forma_pgto'] . "<br>" . "<br>"  ;
+echo "Condição de pagamento: " . $_SESSION['cond_pgto'] . "<br>" . "<br>"  ;
+echo "Valor da parcela: " . $_SESSION['valor_parce'] . "<br>" . "<br>"  ;
+echo "Valor total: " . $_SESSION['valor_total'] . "<br>" . "<br>"  ;
 
 
 ?>
