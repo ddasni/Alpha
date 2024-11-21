@@ -4,7 +4,7 @@
 session_start();
 
 // Inclui a conexão com o banco de dados
-include "conexao.php";
+include "../conexao.php";
 
 // cria as variaveis
 $ID_PROD = isset($_POST['ID_PROD']) ? floatval($_POST['ID_PROD']) : 0;
