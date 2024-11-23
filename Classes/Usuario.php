@@ -95,8 +95,31 @@ class Usuario
         }
     }
 
-    public function pedido(){
-        // parte destinada a cadastrar o pedido do cliente
+    public function pedido($NomeUser, $Endereco, $FormaPagto, $CondPagto, $ValorParce, $ValorTotal){
+        try {
+            include "../conexao.php";
+            //caso não, cadastrar   
+            $Comando=$conexao->prepare("INSERT INTO TB_PEDIDO (NOME_CLIENTE,
+            END_CLIENTE, FORM_PAGTO, COND_PAGTO, VALOR_PARCE, VALOR_PEDIDO) VALUES (?, ?, ?, ?, ?, ?)");
+
+            $Comando->bindParam(1, $NomeUser);
+            $Comando->bindParam(2, $Endereco);
+            $Comando->bindParam(3, $FormaPagto);
+            $Comando->bindParam(4, $CondPagto);
+            $Comando->bindParam(5, $ValorParce);
+            $Comando->bindParam(6, $ValorTotal);
+            
+            if ($Comando->execute()){
+
+                if ($Comando->rowCount() > 0){
+
+                    header('location:../3PGTO_PEDIDO/GerenciamentoPedido.php');
+                }
+            }
+        }  
+        catch (PDOException $erro) {
+            echo "Erro: " . $erro->getMessage();
+        }
     }
 
     public function sessao($Email_User) {
