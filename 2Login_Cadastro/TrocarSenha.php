@@ -7,37 +7,43 @@
 </head>
 <body>
 <?php
-session_start(); // Inicia a sessão para verificar o controle de resposta
+    include_once '../Classes/Usuario.php';
 
-if ($_SESSION['controleResp'] != "enviado") {
-    echo "<script> alert('ERRO!') </script>";
-    echo '<script> setTimeout(function() { window.location.href = "../2Login_Cadastro/Login.html"; }, 1000);</script>';
-    exit;
-}
+    $user = new Usuario;
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Recebe os dados do formulário
-    $SenhaNova = trim($_POST['senha_nova']);
-    $senhaConfirma = trim($_POST['Conf_Senha_nova']);
+    session_start(); 
 
-    // Verificando se todos os campos foram preenchidos
-    if (!empty($SenhaNova) && !empty($senhaConfirma)) {
-        // Verifica se senha e confirmar senha são idênticos
-        if ($SenhaNova == $senhaConfirma) {
-            // Aqui você deve tratar o cadastro ou atualização de senha no banco de dados
-            // Exemplo:
-            // $user->atualizarSenha($Email_User, $SenhaNova);
-            echo "<script> alert('Senha alterada com sucesso!') </script>";
-            echo '<script> setTimeout(function() { window.location.href = "../2Login_Cadastro/Login.html"; }, 1000);</script>';
-        } else {
-            // Senhas não coincidem
-            echo "<script> alert('Senhas não conferem!') </script>";
-        }
-    } else {
-        // Campos vazios
-        echo "<script> alert('Preencha todos os campos!') </script>";
+    if ($_SESSION['controleResp'] != 'enviado') {
+        echo "<script> alert('ERRO!') </script>";
+        echo '<script> setTimeout(function() { window.location.href = "../2Login_Cadastro/Login.html"; }, 1000);</script>';
     }
-}
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+        $SenhaNova = trim($_POST['senha_nova']);
+        $senhaConfirma = trim($_POST['Conf_Senha_nova']);
+
+        if (!empty($SenhaNova) && !empty($senhaConfirma)) {
+        
+            if ($SenhaNova == $senhaConfirma) {
+            
+                $Email_User = $_SESSION['email_user'];
+            
+                if($user->atualizarSenha($Email_User, $SenhaNova)){
+
+                    $PHPMailer->enviarEmail($Email_User);
+                    echo "<script> alert('Senha nova ') </script>";
+                    echo '<script> setTimeout(function() { window.location.href = "../2Login_Cadastro/Login.html"; }, 1000);</script>';
+                }
+            } 
+            else {
+            echo "<script> alert('Senhas não conferem!') </script>";
+            }
+        }
+        else {
+        echo "<script> alert('Preencha todos os campos!') </script>";
+        }
+    }
 ?>
     <form action="TrocarSenha.php?valor = enviado" method="post">
         Senha: <br>

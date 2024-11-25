@@ -95,10 +95,36 @@ class Usuario
         }
     }
 
+    public function atualizarSenha($Email_User, $SenhaNova) {
+        try {
+            include "../conexao.php";
+
+            $Comando=$conexao->prepare("UPDATE TB_CLIENTE set SENHA_CLIENTE = ? where EMAIL_CLIENTE = ?");
+
+            $Comando->bindParam(1, $SenhaNova);
+            $Comando->bindParam(2, $Email_User);
+
+            if ($Comando->execute()){
+
+                if ($Comando->rowCount() > 0){
+                        
+                    echo "<script> alert('Senha alterada com sucesso!') </script>";
+                    echo '<script> setTimeout(function() { window.location.href = "../2Login_Cadastro/Login.html"; }, 1000);</script>';
+
+                    session_start();
+                    $_SESSION['controleResp'] = "alterado";
+                }
+            }
+        }
+        catch (PDOException $erro) {
+            echo "Erro: " . $erro->getMessage();
+        }
+    }
+
     public function pedido($NomeUser, $Endereco, $FormaPagto, $CondPagto, $ValorParce, $ValorTotal){
         try {
             include "../conexao.php";
-            //caso não, cadastrar   
+              
             $Comando=$conexao->prepare("INSERT INTO TB_PEDIDO (NOME_CLIENTE,
             END_CLIENTE, FORM_PAGTO, COND_PAGTO, VALOR_PARCE, VALOR_PEDIDO) VALUES (?, ?, ?, ?, ?, ?)");
 
