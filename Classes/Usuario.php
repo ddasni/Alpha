@@ -60,22 +60,20 @@ class Usuario
         }
     }
 
-    public function alterar () {
+    public function alterar ($novoNome, $novoEndereco) {
 
         try {
             session_start();
-            $ID = $_SESSION['user_id'];
-            $NomeAlterar = $_SESSION[''];
-            $EnderecoAlterar = $_SESSION[''];
+            $EMAIL_CLIENTE = $_SESSION['email_user'];
 
             include "../conexao.php";
             //caso não, cadastrar   
             $Comando=$conexao->prepare("UPDATE TB_CLIENTE SET NOME_CLIENTE = ?, END_CLIENTE = ? 
-                                        WHERE ID_CLIENTE = ?");
+                                        WHERE EMAIL_CLIENTE = ?");
 
-            $Comando->bindParam(1, $NomeAlterar);
-            $Comando->bindParam(2, $EnderecoAlterar);
-            $Comando->bindParam(3, $ID);
+            $Comando->bindParam(1, $novoNome);
+            $Comando->bindParam(2, $novoEndereco);
+            $Comando->bindParam(3, $EMAIL_CLIENTE);
 
             
             if ($Comando->execute()){
@@ -83,15 +81,13 @@ class Usuario
                 if ($Comando->rowCount() > 0) {
 
                 echo "<script> alert('Alteração feita com sucesso!') </script>";
-                echo '<script> setTimeout(function() { window.location.href = "NomeDaPagina.html"; }, 1000);</script>';
-                // nesse codigo ele vai inicar um timer (1000 = 1seg) para abrir uma pagina, no caso é a de login
-                // altere "NomeDaPagina.html" para a pagina que ele vai abrir
+                echo '<script> setTimeout(function() { window.location.href = ../3PGTO_PedidoGerenciamentoPedido/GerenciamentoPedido.php"; }, 1000);</script>';
                 }
             }
         }
         catch (PDOException $erro) {
-            echo "Erro: " . $erro->getMessage(); // altere "NomeDaPagina.html" para a pagina que ele vai voltar após o erro
-            echo '<script> setTimeout(function() { window.location.href = "NomeDaPagina.html"; }, 6000);</script>';
+            echo "Erro: " . $erro->getMessage();
+            echo '<script> setTimeout(function() { window.location.href = "../3PGTO_PedidoGerenciamentoPedido/GerenciamentoPedido.php"; }, 6000);</script>';
         }
     }
 
