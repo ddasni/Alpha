@@ -3,3 +3,5 @@ Classes/SenhaEmail.php
 phpmailer
 
 2Login_Cadastro/EsqueceuSenha.php
+
+Classes/Email.php
