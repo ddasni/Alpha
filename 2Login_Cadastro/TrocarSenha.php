@@ -15,7 +15,7 @@
 
     
 
-    if (isset($_REQUEST['valor']) and isset($_REQUEST['valor']) == 'enviado') {
+    if (isset($_POST['Recadastrar'])) {
     
         $SenhaNova = trim($_POST['senha_nova']);
         $senhaConfirma = trim($_POST['Conf_Senha_nova']);
