@@ -6,23 +6,37 @@
     <title>Document</title>
 </head>
 <body>
-    
+
 <?php
 session_start();
 
-echo "Nome: " . $_SESSION['nome_user'] . "<br>" . "<br>" ;
-echo "Endereço: " . $_SESSION['endereco_user'] . "<br>" . "<br>"  ;
-echo "Forma de pagamento: " . $_SESSION['forma_pgto'] . "<br>" . "<br>"  ;
-echo "Condição de pagamento: " . $_SESSION['cond_pgto'] . "<br>" . "<br>"  ;
-echo "Valor da parcela: " . $_SESSION['valor_parce'] . "<br>" . "<br>"  ;
-echo "Valor total: " . $_SESSION['valor_total'] . "<br>" . "<br>"  ;
+// Verificando se as variáveis de sessão existem antes de usá-las
+if (isset($_SESSION['nome_user'])) {
+    echo "Nome: " . $_SESSION['nome_user'] . "<br><br>";
+}
+if (isset($_SESSION['endereco_user'])) {
+    echo "Endereço: " . $_SESSION['endereco_user'] . "<br><br>";
+}
+if (isset($_SESSION['forma_pgto'])) {
+    echo "Forma de pagamento: " . $_SESSION['forma_pgto'] . "<br><br>";
+}
+if (isset($_SESSION['cond_pgto'])) {
+    echo "Condição de pagamento: " . $_SESSION['cond_pgto'] . "<br><br>";
+}
+if (isset($_SESSION['valor_parce'])) {
+    echo "Valor da parcela: " . $_SESSION['valor_parce'] . "<br><br>";
+}
+if (isset($_SESSION['valor_total'])) {
+    echo "Valor total: " . $_SESSION['valor_total'] . "<br><br>";
+}
 
-$NomeUser = $_SESSION['nome_usuario'];
-$Endereco = $_SESSION['endereco_user'];
-$FormaPagto = $_SESSION['forma_pgto'];
-$CondPagto = $_SESSION['cond_pgto'];
-$ValorParce = $_SESSION['valor_parce'];
-$ValorTotal =  $_SESSION['valor_total'];
+// Definindo as variáveis com as sessões
+$NomeUser = isset($_SESSION['nome_usuario']) ? $_SESSION['nome_usuario'] : null;
+$Endereco = isset($_SESSION['endereco_user']) ? $_SESSION['endereco_user'] : null;
+$FormaPagto = isset($_SESSION['forma_pgto']) ? $_SESSION['forma_pgto'] : null;
+$CondPagto = isset($_SESSION['cond_pgto']) ? $_SESSION['cond_pgto'] : null;
+$ValorParce = isset($_SESSION['valor_parce']) ? $_SESSION['valor_parce'] : null;
+$ValorTotal = isset($_SESSION['valor_total']) ? $_SESSION['valor_total'] : null;
 
 if (isset($_POST['Gerenciar'])) {
     // Incluindo a classe Usuario
@@ -31,10 +45,11 @@ if (isset($_POST['Gerenciar'])) {
 
     $user->pedido($NomeUser, $Endereco, $FormaPagto, $CondPagto, $ValorParce, $ValorTotal);
 }
-
 ?>
 
-<input type="submit" name="Gerenciar" value="Gerenciar">
+<form method="post">
+    <input type="submit" name="Gerenciar" value="Gerenciar">
+</form>
 
 </body>
 </html>
