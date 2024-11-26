@@ -1,3 +1,5 @@
+drop database Loja;
+
 create database if not exists Loja;
 
 use Loja;
@@ -37,3 +39,10 @@ VALUES
 ('Camiseta Polo', 59.90, 'Camiseta polo masculina, disponível em várias cores.','img/camiseta_polo'),
 ('Tênis Esportivo', 199.99, 'Tênis esportivo para corrida e caminhada, confortável e resistente.', 'img/tenis_esportivo'),
 ('Relógio de Pulso', 299.90, 'Relógio de pulso masculino, estilo clássico e elegante.', 'img/tenis_esportivo');
+
+
+select * from TB_CLIENTE;
+
+SELECT * FROM TB_PROD;
+
+SELECT * FROM TB_PEDIDO;
