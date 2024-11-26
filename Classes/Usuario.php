@@ -86,7 +86,7 @@ class Usuario
             }
         }
         catch (PDOException $erro) {
-            echo "Erro: " . $erro->getMessage();
+            echo "Erro: " . $erro->getMessage(); 
             echo '<script> setTimeout(function() { window.location.href = "../3PGTO_PedidoGerenciamentoPedido/GerenciamentoPedido.php"; }, 6000);</script>';
         }
     }
