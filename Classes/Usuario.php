@@ -135,7 +135,7 @@ class Usuario
 
                 if ($Comando->rowCount() > 0){
 
-                    header('location:../3PGTO_PEDIDO/GerenciamentoPedido.php');
+                    header('location:../3PGTO_Pedido/GerenciamentoPedido.php');
                 }
             }
         }  
