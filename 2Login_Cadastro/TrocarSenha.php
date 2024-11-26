@@ -13,12 +13,9 @@
 
     session_start(); 
 
-    if ($_SESSION['controleResp'] != 'enviado') {
-        echo "<script> alert('ERRO!') </script>";
-        echo '<script> setTimeout(function() { window.location.href = "../2Login_Cadastro/Login.html"; }, 1000);</script>';
-    }
+    
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_REQUEST['valor']) and isset($_REQUEST['valor']) == 'enviado') {
     
         $SenhaNova = trim($_POST['senha_nova']);
         $senhaConfirma = trim($_POST['Conf_Senha_nova']);
@@ -44,6 +41,7 @@
         echo "<script> alert('Preencha todos os campos!') </script>";
         }
     }
+    else {
 ?>
     <form action="TrocarSenha.php?valor = enviado" method="post">
         Senha: <br>
@@ -56,3 +54,6 @@
     </form>
 </body>
 </html>
+<?php
+}
+?>
