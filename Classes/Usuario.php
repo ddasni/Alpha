@@ -117,7 +117,7 @@ class Usuario
         }
     }
 
-    public function pedido($NomeUser, $Endereco, $FormaPagto, $CondPagto, $ValorParce, $ValorTotal){
+    public function pedido($Endereco, $FormaPagto, $CondPagto, $ValorParce, $ValorTotal){
         try {
             include "../conexao.php";
               
