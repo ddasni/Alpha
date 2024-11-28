@@ -8,44 +8,44 @@
 </head>
 <body>
     <h1>Selecione um Produto</h1><br><br>
-    
-    <div class="Produtos">
 
-    <h3>Camiseta Polo 59,90</h3>
-    <a id="01" href="../1Vitrine_Produto/CamisetaPolo.php"><img src="../1Vitrine_Produto/img/Camisetapolo.png" id="01" width="300px"></a>
-    
-    <h3>Tênis Esportivo 199,99</h3>
-    <a id="02" href="../1Vitrine_Produto/TênisEsportivo.php"><img src="../1Vitrine_Produto/img/TenisEsportivo.png" id="02" width="300px"></a>
+    <form action="Vitrine.php?valor = enviado" method="post">
+        
+        <h3>Camiseta Polo 59,90</h3>
+        <img src="../1Vitrine_Produto/img/Camisetapolo.png" id="01" width="300px">
+        <input type="submit" name="ID01" value="ESCOLHER CAMISETA"><br><p>
 
-    <h3>Relógio de Pulso 299,90</h3>
-    <a id="03" href="../1Vitrine_Produto/RelogiodePulso.php"><img src="../1Vitrine_Produto/img/Relogio.png" id="03" width="300px"></a>
+        <h3>Tênis Esportivo 199,99</h3>
+        <img src="../1Vitrine_Produto/img/TenisEsportivo.png" id="02" width="300px">
+        <input type="submit" name="ID02" value="ESCOLHER TÊNIS"><br><p>
 
-    </div>
-
+        <h3>Relógio de Pulso 299,90</h3>
+        <img src="../1Vitrine_Produto/img/Relogio.png" id="03" width="300px">
+        <input type="submit" name="ID03" value="ESCOLHER RELÓGIO">
+    </form>
 </body>
 </html>
 
 <?php
+    // Inicia a sessão
+    session_start();
 
-// Inicia a sessão
-session_start();
-
-if (isset($_GET['id == 01'])) 
-{
-    // Salva o ID selecionado na sessão
-    $_SESSION['59,90'] = $_GET['id'];
-
-}
-elseif(isset($_GET['id == 02'])) 
-{
-    // Salva o ID selecionado na sessão
-    $_SESSION['199,99'] = $_GET['id'];
-
-}
-elseif(isset($_GET['id == 03'])) 
-{
-    // Salva o ID selecionado na sessão
-    $_SESSION['299,90'] = $_GET['id'];
-
-}
+    if (isset($_POST['ID01'])) 
+    {
+        // Salva o ID selecionado na sessão
+        $_SESSION['valor_total'] = '59,90';
+        header('location:../1Vitrine_Produto/Camisetapolo.php');
+    }
+    elseif(isset($_POST['ID02'])) 
+    {
+        // Salva o ID selecionado na sessão
+        $_SESSION['valor_total'] = '199,99';
+        header('location:../1Vitrine_Produto/TênisEsportivo.php');
+    }
+    elseif(isset($_POST['ID03'])) 
+    {
+        // Salva o ID selecionado na sessão
+        $_SESSION['valor_total'] = '299,90';
+        header('location:../1Vitrine_Produto/RelogiodePulso.php');
+    }
 ?>
