@@ -51,7 +51,6 @@ $conn->close();
     </a> 
     </div>
 
-
     <h3>Valor: R$ <?php echo number_format($valor_prod, 2, ',', '.'); ?></h3>
 
     <a href="../2Login_Cadastro/Login.html"><button>Comprar</button></a>
@@ -61,7 +60,7 @@ $conn->close();
     <form action="">
         <label for="descricao">
             <textarea id="descricao" name="descricao" rows="4" cols="50" readonly>
-<?php echo htmlspecialchars($desc_prod); ?>
+                <?php echo htmlspecialchars($desc_prod); ?>
             </textarea>
         </label>
     </form>

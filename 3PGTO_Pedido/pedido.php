@@ -30,11 +30,13 @@ echo "Valor total: " . $_SESSION['valor_total'] . "<br>" . "<br>"  ;
 
 
 if (isset($_POST['Gerenciar'])) {
-    $user->pedido($Endereco, $FormaPagto, $CondPagto, $ValorParce, $ValorTotal);
+    $user->pedido($FormaPagto, $CondPagto, $ValorParce, $ValorTotal);
 }
 ?>
 
-<input type="submit" name="Gerenciar" value="Gerenciar">
+<form method="POST" action="pedido.php">
+    <input type="submit" name="Gerenciar" value="Gerenciar">
+</form>
 
 </body>
 </html>
