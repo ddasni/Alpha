@@ -136,8 +136,8 @@ class Usuario
                 $cliente = $Comando->fetch(PDO::FETCH_ASSOC);
                 $IDCliente = $cliente['ID_CLIENTE'];
 
-                $dataPedido = date('d/m/y H:i');
-                $statusPedido = " Data de entrega 21/11 a 30/11"; 
+                $dataPedido = date('Y-m-d');
+                $statusPedido = " Finalizado "; 
                 $idProduto = $_SESSION['ID_Prod'];
 
                 // 2. Inserir o pedido na tabela TB_PEDIDO
