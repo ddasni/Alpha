@@ -1,68 +1,40 @@
 <?php
-include "../conexao.php";
+// incluindo o arquivo Tabela.php
+include "../Classes/Tabela.php";
+
+// incluindo apenas uma vez o arquivo Usuario.php, caso já tenha sido adicionado anteriormente na execução.
 include_once '../Classes/Usuario.php'; 
+
+// cria um novo "usuário" (nome da classe) e guarda ele em uma variavel
 $user = new Usuario;
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+// se o botão alterar for precionado
+if (isset($_POST['Alterar'])) {
 
+    // pega o que foi digitado nos input via post e guarda em uma variavel 
     $novoNome = $_POST['novo_nome'];
     $novoEndereco = $_POST['novo_endereco'];
     
-    // Verifica se senha e confirmar senha são identicos
+    // Verifica se o campo nome e endereço foram preenchidos
     if (!empty($novoNome) && !empty($novoEndereco)) { 
 
+        // chama a função alterar na classe Usuario e envia os dados para lá
         $user->alterar($novoNome, $novoEndereco);
     } 
     else { 
+        // "null" limpa os campos novoNome e novoEndereco
         $novoNome = null;
         $novoEndereco = null;
-        echo "<script> alert('Senhas não conferem!') </script>";
-        echo '<script> setTimeout(function() { window.location.href = "../2Login_Cadastro/Cadastro.html"; }, 1000);</script>';
+
+        // Envianda um alerta para preencher os campos, caso não estiverem preenchidos
+        echo "<script> alert('Preencha os campos!') </script>";
+
+        // Após 1seg será redirecionado para a pagina Gerenciamento
+        echo '<script> setTimeout(function() { window.location.href = "../3PGTO_Pedido/GerenciamentoPedido.php"; }, 1000);</script>';
     }
-
-    //Carrega a tabela
-    $Matriz=$conexao->prepare("SELECT * FROM TB_PEDIDO");
-    
-    $Matriz->execute();
-
-    echo "<table border=1>";
-
-    echo "<tr>";
-    echo "<td> Número do Pedido </td>";
-    echo "<td> Nome </td>";
-    echo "<td> Data do Pedido </td>";
-    echo "<td> Status do pedido </td>";
-    echo "<td> Condição do Pagamento </td>";
-    echo "<td> Forma de Pagamento </td>";
-    echo "<td> Valor Parcelado </td>";
-    echo "</tr>";
-
-    while ($Linha = $Matriz->fetch(PDO::FETCH_OBJ)) 
-    {
-
-        $idPedido = $Linha->ID_PEDIDO;
-        $Nome = $Linha->NOME_CONTATO;
-        $DTAPedido = $Linha->DTA_PEDIDO;
-        $StatusPedido = $Linha->STATUS_PEDIDO;
-        $CondPagto = $Linha->COND_PAGTO;
-        $FormaPagto = $Linha->FORM_PAGTO;
-        $ValorParce = $Linha->VALOR_PARCE;
-        
-        echo "<tr>";
-        echo "<td>".$idPedido ." </td>";
-        echo "<td>".$Nome ." </td>";
-        echo "<td>".$DTAPedido ."</td>";
-        echo "<td>".$StatusPedido ." </td>";
-        echo "<td>".$CondPagto ." </td>";
-        echo "<td>".$FormaPagto ."</td>";
-        echo "<td>".$ValorParce ." </td>";
-        echo "</tr>";
-    }
-
-    echo "</table>";
-}
+}// se não
+else {
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -84,7 +56,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <label for="novo_endereco">Novo Endereço:</label><br>
         <input type="text" name="novo_endereco" id="novo_endereco" required><br><br>
 
-        <button type="submit">Alterar</button>
+        <input type="submit" name="Alterar" value="Alterar dados">
     </form>
 </body>
 </html>
+<?php
+}
+// se sessão for igual a 'alterado'
+if ($_SESSION['tebela'] = 'alterado') {
+
+}// se não
+else {
+    
+}
+?>
