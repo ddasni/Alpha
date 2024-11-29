@@ -80,9 +80,9 @@ class Usuario
 
                 if ($Comando->rowCount() > 0) {
 
-                $_SESSION['tebela'] = "alterado";
                 echo "<script> alert('Alteração feita com sucesso!') </script>";
                 echo '<script> setTimeout(function() { window.location.href = ../3PGTO_PedidoGerenciamentoPedido/GerenciamentoPedido.php"; }, 1000);</script>';
+                $_SESSION['tebela'] = "alterado";
                 }
             }
         }
