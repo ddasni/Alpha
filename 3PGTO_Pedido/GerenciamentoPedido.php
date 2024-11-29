@@ -1,6 +1,7 @@
 <?php
 // incluindo o arquivo Tabela.php
 include "../Classes/Tabela.php";
+$tabela = new Tabela;
 
 // incluindo apenas uma vez o arquivo Usuario.php, caso já tenha sido adicionado anteriormente na execução.
 include_once '../Classes/Usuario.php'; 
@@ -64,9 +65,9 @@ else {
 }
 // se sessão for igual a 'alterado'
 if ($_SESSION['tebela'] = 'alterado') {
-
+    $tabela->ChamarTabela();
 }// se não
 else {
-    
+    $tabela->ChamarTabela();
 }
 ?>
