@@ -14,23 +14,18 @@ $user = new Usuario;
 
 session_start();
 
-$NomeUser = $_SESSION['nome_user'];
-$Endereco = $_SESSION['endereco_user'];
-$FormaPagto = $_SESSION['forma_pgto'];
-$CondPagto = $_SESSION['cond_pgto'];
-$ValorParce = $_SESSION['valor_parce'];
 $ValorTotal = $_SESSION['valor_total'];
 
-echo "Nome: " . $NomeUser . "<br>" . "<br>" ;
-echo "Endereço: " . $Endereco . "<br>" . "<br>"  ;
-echo "Forma de pagamento: " . $FormaPagto . "<br>" . "<br>"  ;
+echo "Nome: " . $_SESSION['nome_user'] . "<br>" . "<br>" ;
+echo "Endereço: " . $_SESSION['endereco_user'] . "<br>" . "<br>"  ;
+echo "Forma de pagamento: " . $_SESSION['forma_pgto'] . "<br>" . "<br>"  ;
 echo "Condição de pagamento: " . $_SESSION['cond_pgto'] . "<br>" . "<br>"  ;
 echo "Valor da parcela: " . $_SESSION['valor_parce']  . "<br>" . "<br>"  ;
-echo "Valor total: " . $_SESSION['valor_total'] . "<br>" . "<br>"  ;
+echo "Valor total: " . $ValorTotal . "<br>" . "<br>"  ;
 
 
 if (isset($_POST['Gerenciar'])) {
-    $user->pedido($FormaPagto, $CondPagto, $ValorParce, $ValorTotal);
+    $user->pedido($ValorTotal);
 }
 ?>
 
