@@ -12,7 +12,6 @@ if (isset($_POST['Login'])) {
     //verificar se esta preenchido (Validação form)
     if(!empty($emailLogin) && !empty($senhaLogin)) {
 
-        include '../conexao.php';
         if ($user->logar($emailLogin, $senhaLogin))
         {
             $Email_User = $emailLogin;
