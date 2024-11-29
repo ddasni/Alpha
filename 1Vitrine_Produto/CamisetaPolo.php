@@ -1,11 +1,7 @@
 <?php
 session_start(); // Inicia a sessão
 
-// Verifica se um ID de produto está definido na sessão
-if (!isset($_SESSION['id_produto'])) {
-    // Define um ID de produto padrão, caso não esteja definido
-    $_SESSION['id_produto'] = 01; // Exemplo: ID do produto padrão
-}
+    $_SESSION['id_produto'] = 01;
 
 // Configurações do banco de dados
 $host = "localhost";
