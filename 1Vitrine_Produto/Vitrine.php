@@ -33,21 +33,21 @@
     if (isset($_POST['ID01'])) 
     {
         // Salva o ID e o Valor na sessão
-        $_SESSION['valor_total'] = '59,90';
+        $_SESSION['valor_total'] = '59.90';
         $_SESSION['ID_Prod'] = '1';
         header('location:../1Vitrine_Produto/Camisetapolo.php');
     }
     elseif(isset($_POST['ID02'])) 
     {
         // Salva o ID e o Valor na sessão
-        $_SESSION['valor_total'] = '199,99';
+        $_SESSION['valor_total'] = '199.99';
         $_SESSION['ID_Prod'] = '2';
         header('location:../1Vitrine_Produto/TênisEsportivo.php');
     }
     elseif(isset($_POST['ID03'])) 
     {
         // Salva o ID e o Valor na sessão
-        $_SESSION['valor_total'] = '299,90';
+        $_SESSION['valor_total'] = '299.90';
         $_SESSION['ID_Prod'] = '3';
         header('location:../1Vitrine_Produto/RelogiodePulso.php');
     }
