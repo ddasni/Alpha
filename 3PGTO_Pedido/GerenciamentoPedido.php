@@ -33,8 +33,7 @@ if (isset($_POST['Alterar'])) {
         // Após 1seg será redirecionado para a pagina Gerenciamento
         echo '<script> setTimeout(function() { window.location.href = "../3PGTO_Pedido/GerenciamentoPedido.php"; }, 1000);</script>';
     }
-}// se não
-else {
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -62,7 +61,6 @@ else {
 </body>
 </html>
 <?php
-}
 // se sessão for igual a 'alterado'
 if ($_SESSION['tebela'] = 'alterado') {
     $tabela->ChamarTabela();
