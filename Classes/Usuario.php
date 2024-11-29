@@ -80,7 +80,7 @@ class Usuario
 
                 if ($Comando->rowCount() > 0) {
 
-                $_SESSION = "alterado";
+                $_SESSION['tebela'] = "alterado";
                 echo "<script> alert('Alteração feita com sucesso!') </script>";
                 echo '<script> setTimeout(function() { window.location.href = ../3PGTO_PedidoGerenciamentoPedido/GerenciamentoPedido.php"; }, 1000);</script>';
                 }
@@ -118,7 +118,7 @@ class Usuario
         }
     }
 
-    public function pedido($FormaPagto, $CondPagto, $ValorParce, $ValorTotal){
+    public function pedido($ValorTotal){
         try {
             include "../conexao.php";
 
@@ -137,23 +137,20 @@ class Usuario
                 $IDCliente = $cliente['ID_CLIENTE'];
 
                 $dataPedido = date('d/m/y H:i');
-                $statusPedido = "Finalizado"; 
+                $statusPedido = " Data de entrega 21/11 a 30/11"; 
                 $idProduto = $_SESSION['ID_Prod'];
 
                 // 2. Inserir o pedido na tabela TB_PEDIDO
                 $Comando = $conexao->prepare("INSERT INTO TB_PEDIDO 
-                (DTA_PEDIDO, VALOR_PEDIDO, STATUS_PEDIDO, ID_CLIENTE, ID_PROD, COND_PAGTO, FORM_PAGTO, VALOR_PARCE)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                (DTA_PEDIDO, VALOR_PEDIDO, STATUS_PEDIDO, ID_CLIENTE, ID_PROD)
+                VALUES (?, ?, ?, ?, ?)");
                 //Outra opção para colocar data e hora atual é usar NOW() diretamente no banco de dados
     
                 $Comando->bindParam(1, $dataPedido);
                 $Comando->bindParam(2, $ValorTotal);
                 $Comando->bindParam(3, $statusPedido);
-                $Comando->bindParam(4, $IDCliente); // Agora usa o ID_CLIENTE encontrado
+                $Comando->bindParam(4, $IDCliente);
                 $Comando->bindParam(5, $idProduto); 
-                $Comando->bindParam(6, $CondPagto);
-                $Comando->bindParam(7, $FormaPagto);
-                $Comando->bindParam(8, $ValorParce);
     
                 // Executar o comando
                 if ($Comando->execute()) {
