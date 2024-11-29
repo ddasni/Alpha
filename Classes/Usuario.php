@@ -80,6 +80,7 @@ class Usuario
 
                 if ($Comando->rowCount() > 0) {
 
+                $_SESSION = "alterado";
                 echo "<script> alert('Alteração feita com sucesso!') </script>";
                 echo '<script> setTimeout(function() { window.location.href = ../3PGTO_PedidoGerenciamentoPedido/GerenciamentoPedido.php"; }, 1000);</script>';
                 }
@@ -126,7 +127,7 @@ class Usuario
             $emailCliente = $_SESSION['email_user'];
     
             // Buscar o cliente no banco de dados com o email
-            $Comando = $conexao->prepare("SELECT ID_CLIENTE, NOME_CLIENTE, END_CLIENTE FROM TB_CLIENTE WHERE EMAIL_CLIENTE = ?");
+            $Comando = $conexao->prepare("SELECT ID_CLIENTE  FROM TB_CLIENTE WHERE EMAIL_CLIENTE = ?");
             $Comando->bindParam(1, $emailCliente);
             $Comando->execute();
     
@@ -173,7 +174,7 @@ class Usuario
         try {
             include "../conexao.php";
 
-            $Comando=$conexao->prepare("SELECT NOME_CLIENTE, END_CLIENTE FROM TB_CLIENTE 
+            $Comando=$conexao->prepare("SELECT ID_CLIENTE, NOME_CLIENTE, END_CLIENTE FROM TB_CLIENTE 
                                         WHERE EMAIL_CLIENTE = ?");
 
             $Comando->bindParam(1, $Email_User);
@@ -183,11 +184,12 @@ class Usuario
                 if ($Comando->rowCount() > 0) {
 
                 $dado = $Comando->fetch(PDO::FETCH_ASSOC);
+                $ID_User = $dado['ID_CLIENTE'];
                 $NomeUser = $dado['NOME_CLIENTE'];
                 $EnderecoUser = $dado['END_CLIENTE'];
 
                 session_start();
-
+                $_SESSION['id_user'] = $ID_User;
                 $_SESSION['nome_user'] = $NomeUser;
                 $_SESSION['endereco_user'] = $EnderecoUser;
                 }
