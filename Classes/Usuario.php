@@ -139,18 +139,24 @@ class Usuario
                 $dataPedido = date('Y-m-d');
                 $statusPedido = " Finalizado "; 
                 $idProduto = $_SESSION['ID_Prod'];
+                $CondPGTO = $_SESSION['cond_pgto'];
+                $FormPGTO = $_SESSION['forma_pgto']; 
+                $ValorParcela = $_SESSION['valor_parce'];
 
                 // 2. Inserir o pedido na tabela TB_PEDIDO
                 $Comando = $conexao->prepare("INSERT INTO TB_PEDIDO 
-                (DTA_PEDIDO, VALOR_PEDIDO, STATUS_PEDIDO, ID_CLIENTE, ID_PROD)
-                VALUES (?, ?, ?, ?, ?)");
+                (DTA_PEDIDO, VALOR_PEDIDO, STATUS_PEDIDO, COND_PAGTO, FORM_PAGTO, VALOR_PARCE, ID_CLIENTE, ID_PROD)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                 //Outra opção para colocar data e hora atual é usar NOW() diretamente no banco de dados
     
                 $Comando->bindParam(1, $dataPedido);
                 $Comando->bindParam(2, $ValorTotal);
                 $Comando->bindParam(3, $statusPedido);
-                $Comando->bindParam(4, $IDCliente);
-                $Comando->bindParam(5, $idProduto); 
+                $Comando->bindParam(4, $CondPGTO);
+                $Comando->bindParam(5, $FormPGTO);
+                $Comando->bindParam(6, $ValorParcela);
+                $Comando->bindParam(7, $IDCliente);
+                $Comando->bindParam(8, $idProduto); 
     
                 // Executar o comando
                 if ($Comando->execute()) {
